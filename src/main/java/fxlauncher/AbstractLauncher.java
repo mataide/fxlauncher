@@ -41,7 +41,7 @@ public abstract class AbstractLauncher<APP>  {
      * Make java.util.logger log to a file. Default it will log to $TMPDIR/fxlauncher.log. This can be overriden by using
      * comman line parameter <code>--logfile=logfile</code>
      *
-     * @throws IOException
+     * @throws IOException throws IOException
      */
     protected void setupLogFile() throws IOException {
         String filename = System.getProperty("java.io.tmpdir") + File.separator + "fxlauncher.log";
@@ -56,8 +56,8 @@ public abstract class AbstractLauncher<APP>  {
     /**
      * Check if the SSL connection needs to ignore the validity of the ssl certificate.
      *
-     * @throws KeyManagementException
-     * @throws NoSuchAlgorithmException
+     * @throws KeyManagementException throws
+     * @throws NoSuchAlgorithmException throws
      */
     protected void checkSSLIgnoreflag() throws KeyManagementException, NoSuchAlgorithmException {
         if (getParameters().getUnnamed().contains("--ignoressl")) {
@@ -95,7 +95,7 @@ public abstract class AbstractLauncher<APP>  {
      * Also return false and do not check for updates if the <code>--offline</code> commandline argument is set.
      *
      * @return true if new files have been downloaded, false otherwise.
-     * @throws Exception
+     * @throws Exception throws
      */
     protected boolean syncFiles() throws Exception {
 
@@ -117,6 +117,7 @@ public abstract class AbstractLauncher<APP>  {
             return false;
 
         Long totalBytes = needsUpdate.stream().mapToLong(f -> f.size).sum();
+        double totalMB = totalBytes.doubleValue() / 1000000;
         Long totalWritten = 0L;
 
         for (LibraryFile lib : needsUpdate) {
@@ -138,8 +139,9 @@ public abstract class AbstractLauncher<APP>  {
                 while ((read = input.read(buf)) > -1) {
                     output.write(buf, 0, read);
                     totalWritten += read;
-                    Double progress = totalWritten.doubleValue() / totalBytes.doubleValue();
-                    updateProgress(progress);
+                    double progress = totalWritten.doubleValue() / totalBytes.doubleValue();
+                    double currentMB = totalWritten.doubleValue() / 1000000;
+                    updateProgress(progress, lib.file, currentMB, totalMB);
                 }
             }
         }
@@ -282,7 +284,7 @@ public abstract class AbstractLauncher<APP>  {
     }
 
     protected abstract Application.Parameters getParameters();
-    protected abstract void updateProgress(double progress);
+    protected abstract void updateProgress(double progress, String archiveName, double currentMB, double totalMB);
     protected abstract void createApplication(Class<APP> appClass);
     protected abstract void reportError(String title, Throwable error);
     protected abstract void setupClassLoader(ClassLoader classLoader);

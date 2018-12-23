@@ -42,8 +42,8 @@ public class Launcher extends Application {
         }
 
         @Override
-        protected void updateProgress(double progress) {
-            Platform.runLater(() -> uiProvider.updateProgress(progress));
+        protected void updateProgress(double progress, String archiveName, double currentMB, double totalMB) {
+            Platform.runLater(() -> uiProvider.updateProgress(progress, archiveName, currentMB, totalMB));
         }
 
         @Override

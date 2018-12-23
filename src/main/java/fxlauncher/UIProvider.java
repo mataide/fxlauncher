@@ -48,10 +48,11 @@ public interface UIProvider {
 	/**
 	 * Create the Node that will be displayed while the launcher is updating resources.
 	 *
-	 * This Node should update it's display whenever the {@link #updateProgress(double)}
+	 * This Node should update it's display whenever the {@link #updateProgress(double, String, double, double)}
 	 * method is called.
 	 *
-	 * @see #updateProgress(double)
+     * @param manifest the manifest
+	 * @see #updateProgress(double, String, double, double)
 	 * @return The updater Node
 	 */
 	Parent createUpdater(FXManifest manifest);
@@ -61,6 +62,9 @@ public interface UIProvider {
 	 * 0 and 1, indicating the completion rate of the update process.
 	 *
 	 * @param progress A number between 0 and 1
+	 * @param currentArchive String with the current archive being downloaded
+	 * @param currentMB amount of MB downloaded so far
+	 * @param totalMB amount of MB to download
 	 */
-	void updateProgress(double progress);
+	void updateProgress(double progress, String currentArchive, double currentMB, double totalMB);
 }

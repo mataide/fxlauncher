@@ -57,7 +57,7 @@ public class HeadlessMainLauncher extends AbstractLauncher<Object>
     }
 
     @Override
-    protected void updateProgress(double progress)
+    protected void updateProgress(double progress, String archive, double currentMB, double totalMB)
     {
         log.info(String.format("Progress: %d%%", (int) (progress * 100)));
     }
