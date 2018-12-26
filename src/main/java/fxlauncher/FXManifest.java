@@ -29,11 +29,7 @@ public class FXManifest {
 	@XmlElement(name = "lib")
 	public List<LibraryFile> files = new ArrayList<>();
 	@XmlElement
-	public String updateText = "Updating...";
-	@XmlElement
-	public String patchNotesBR = "";
-	@XmlElement
-	public String patchNotesEN = "";
+	public String updateText = "...";
 	@XmlElement
 	public String updateLabelStyle = "-fx-font-weight: bold;";
 	@XmlElement

@@ -179,8 +179,8 @@ public class Launcher extends Application {
         PlatformImpl.runAndWait(() ->
         {
             try {
-                if (showWhatsnew && superLauncher.getManifest().whatsNewPage != null)
-                    showWhatsNewDialog(superLauncher.getManifest().whatsNewPage);
+//                if (showWhatsnew && superLauncher.getManifest().whatsNewPage != null)
+//                    showWhatsNewDialog(superLauncher.getManifest().whatsNewPage);
 
                 // Lingering update screen will close when primary stage is shown
                 if (superLauncher.getManifest().lingeringUpdateScreen) {

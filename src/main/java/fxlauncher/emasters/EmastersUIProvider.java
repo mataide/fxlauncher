@@ -199,13 +199,23 @@ public class EmastersUIProvider implements UIProvider {
     public Parent createUpdater(FXManifest manifest) {
         downloadLabel.setText(I18N.get(TAG.DOWNLOADING));
         launchButton.setVisible(false);
+        String patchNotes = manifest.whatsNewPage;
+        String patchNotesBR = parseNotes(patchNotes, "<br>");
+        String patchNotesEN = parseNotes(patchNotes, "<en>");
+
         Locale locale = I18N.getLocale();
         if (locale.equals(Locale.forLanguageTag("pt-BR"))) {
-            textNotes.setText(manifest.patchNotesBR);
+            textNotes.setText(patchNotesBR);
         } else {
-            textNotes.setText(manifest.patchNotesEN);
+            textNotes.setText(patchNotesEN);
         }
 
         return root;
+    }
+
+    private String parseNotes(String original, String tag) {
+        int startIndex = original.indexOf(tag) + tag.length();
+        int endIndex = original.lastIndexOf(tag);
+        return original.substring(startIndex, endIndex);
     }
 }
