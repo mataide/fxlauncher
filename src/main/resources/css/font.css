@@ -1,0 +1,14 @@
+@font-face {
+    font-family: Myriad Pro Light;
+    src: url('../font/myriad/myriad-pro-light-italic.ttf');
+}
+
+@font-face {
+    font-family: Myriad Pro;
+    src: url('../font/myriad/myriad-pro-bold.otf');
+}
+
+@font-face {
+    font-family: BigNoodleTooOblique;
+    src: url('../font/bignood/bignoodletoo.ttf');
+}

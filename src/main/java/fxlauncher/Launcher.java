@@ -2,6 +2,7 @@ package fxlauncher;
 
 import com.sun.javafx.application.ParametersImpl;
 import com.sun.javafx.application.PlatformImpl;
+import fxlauncher.emasters.EmastersUIProvider;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -121,7 +122,7 @@ public class Launcher extends Application {
      */
     public void init() throws Exception {
         Iterator<UIProvider> providers = ServiceLoader.load(UIProvider.class).iterator();
-        uiProvider = providers.hasNext() ? providers.next() : new DefaultUIProvider();
+        uiProvider = providers.hasNext() ? providers.next() : new EmastersUIProvider();
     }
 
     public void start(Stage primaryStage) throws Exception {
@@ -209,6 +210,7 @@ public class Launcher extends Application {
     }
 
     public static void main(String[] args) {
+        System.out.println(args[0]);
         launch(args);
     }
 

@@ -1,0 +1,107 @@
+/*LABELS*/
+.label-oblique {
+    -fx-text-fill: -color-primary;
+    -fx-font-family: 'BigNoodleTooOblique';
+}
+
+.label-bold {
+    -fx-text-fill: -color-primary;
+    -fx-font-size: 16px;
+    -fx-font-family: 'Myriad Pro';
+}
+
+.label {
+    -fx-text-fill: -color-primary;
+    -fx-font-size: 12px;
+    -fx-font-family: 'Myriad Pro';
+}
+
+/*BUTTONS*/
+.button {
+    -fx-cursor: hand;
+    -fx-background-radius: 5em;
+    -fx-background-color: -color-amber;
+    -fx-font-family: 'BigNoodleTooOblique';
+    -fx-font-size: 16px;
+    -fx-text-fill: -color-dark-secondary;
+    -fx-padding: 0.5em 1em 0.5em 1em;
+    -fx-pref-width: 120px;
+}
+
+.button:hover {
+    -fx-background-color: -color-light-amber;
+}
+
+.button:selected, .button:pressed {
+    -fx-background-color: -color-dark-amber;
+}
+
+.button:disabled {
+    -fx-background-color: -color-light-gray;
+}
+
+/*PROGRESS BAR*/
+.progress-bar {
+    bar-height-size: 18px;
+}
+
+.progress-bar:determinate > .bar, .progress-bar:indeterminate > .bar {
+    -fx-background-color: -color-amber;
+    -fx-background-insets: 0 0 0 0;
+    -fx-pref-height: bar-height-size;
+    -fx-padding: 0;
+}
+
+.progress-bar:determinate > .track, .progress-bar:indeterminate > .track {
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-color: -color-dark-secondary;
+}
+
+/*
+ * SCROLL-BAR
+ */
+.scroll-bar {
+    -fx-background-radius: 5;
+}
+
+.scroll-bar:vertical .track,
+.scroll-bar:horizontal .track {
+    -fx-background-color: -color-dark-primary;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar:vertical .track-background,
+.scroll-bar:horizontal .track-background {
+    -fx-background-color: -color-dark-primary;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar .thumb{
+    -fx-background-color: -color-amber;
+    -fx-background-radius: 5;
+    -fx-background-insets: 0;
+    -fx-padding: 0 5 0 0;
+
+}
+
+.scroll-bar:vertical .increment-button, .scroll-bar:vertical .decrement-button,
+.scroll-bar:horizontal .increment-button, .scroll-bar:horizontal .decrement-button {
+    -fx-background-color: -color-dark-primary;
+    -fx-padding: 1;
+}
+
+.scroll-bar:vertical .increment-arrow {
+    -fx-background-color: -color-dark-primary;
+    -fx-padding: 0em;
+    -fx-rotate: 0;
+}
+
+.scroll-bar:vertical .decrement-arrow {
+    -fx-background-color: -color-dark-primary;
+    -fx-padding: 0em;
+    -fx-rotate: -180;
+}
+
+.scroll-pane, .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}

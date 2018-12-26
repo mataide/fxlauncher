@@ -1,0 +1,38 @@
+@import "colors.css";
+@import "font.css";
+@import "components.css";
+
+.background {
+    -fx-background-color: -color-dark-primary;
+}
+
+.logo-box {
+    -fx-background-image: url('../img/emasters_dir_white_low.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+}
+
+.label-patch {
+    -fx-text-fill: -color-primary;
+    -fx-font-size: 16px;
+    -fx-font-family: 'Myriad Pro';
+    -fx-background-color: -color-dark-secondary;
+    -fx-padding: 5px 20px 5px 20px;
+    -fx-background-radius: 10px 10px 0 0;
+}
+
+.patch-notes-box {
+    -fx-background-color: -color-dark-blue;
+    -fx-background-radius: 10px 10px 0 0;
+    -fx-border-radius: 10px 10px 0 0;
+    -fx-border-color: -color-dark-secondary;
+    -fx-border-width: 0.5 0.5 0 0.5;
+}
+
+.scroll-pane {
+    -fx-border-color: -color-dark-secondary;
+    -fx-border-radius: 0 0 10px 10px;
+    -fx-padding: 10px;
+    -fx-background-radius: 0 0 10px 10px;
+    -fx-border-width: 0 0.5 0.5 0.5;
+}

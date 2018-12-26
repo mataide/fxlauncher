@@ -31,6 +31,10 @@ public class FXManifest {
 	@XmlElement
 	public String updateText = "Updating...";
 	@XmlElement
+	public String patchNotesBR = "";
+	@XmlElement
+	public String patchNotesEN = "";
+	@XmlElement
 	public String updateLabelStyle = "-fx-font-weight: bold;";
 	@XmlElement
 	public String progressBarStyle = "-fx-pref-width: 200;";
