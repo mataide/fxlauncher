@@ -198,7 +198,7 @@ public class EmastersUIProvider implements UIProvider {
 
     public Parent createUpdater(FXManifest manifest) {
         downloadLabel.setText(I18N.get(TAG.DOWNLOADING));
-        launchButton.setVisible(true);
+        launchButton.setVisible(false);
         Locale locale = I18N.getLocale();
         if (locale.equals(Locale.forLanguageTag("pt-BR"))) {
             textNotes.setText(manifest.patchNotesBR);
