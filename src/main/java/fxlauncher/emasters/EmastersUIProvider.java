@@ -2,22 +2,20 @@ package fxlauncher.emasters;
 
 import fxlauncher.FXManifest;
 import fxlauncher.UIProvider;
-import fxlauncher.emasters.components.LabelFactory;
 import fxlauncher.emasters.components.PatchNotesBox;
+import fxlauncher.emasters.components.PlayBox;
 import fxlauncher.emasters.components.PlayableTooltipBox;
 import fxlauncher.emasters.location.I18N;
 import fxlauncher.emasters.location.TAG;
 import fxlauncher.emasters.utils.DownloadRate;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.text.DecimalFormat;
 
 public class EmastersUIProvider implements UIProvider {
 
@@ -36,28 +34,16 @@ public class EmastersUIProvider implements UIProvider {
     private static final String CSS_BG = "background";
     private static final String CSS_RIGHT_IMAGE = "right-image";
     private static final String CSS_LOGO_BOX = "logo-box";
-    private static final String CSS_LABEL_DOWNLOAD = "label-download";
 
     private final DownloadRate rate = new DownloadRate();
     private final PatchNotesBox notesBox = new PatchNotesBox();
+    private final PlayBox playBox = new PlayBox(WIDTH - (PADDING_LR * 2));
+    private final PlayableTooltipBox estimateTooltip = new PlayableTooltipBox();
 
     private Pane root;
-    private ProgressBar progressBar;
-    private Label downloadLabel;
-    private Label currentSizeLabel;
-    private Label sizeOfLabel;
-    private Label totalSizeLabel;
-    private Label speedLabel;
     private Button launchButton;
-    private PlayableTooltipBox estimateTooltip;
-    private DecimalFormat df = new DecimalFormat("#.##");
 
     public Parent createLoader() {
-        root = new Pane();
-        root.getStylesheets().add(EmastersUIProvider.class.getResource(STYLESHEET).toExternalForm());
-        root.getStyleClass().add(CSS_BG);
-        root.setPrefSize(WIDTH, HEIGHT);
-
         final VBox main = new VBox();
         main.setPrefWidth(WIDTH);
         main.setPrefHeight(HEIGHT);
@@ -77,8 +63,6 @@ public class EmastersUIProvider implements UIProvider {
         logoBox.setPrefHeight(37);
         logoBox.setPrefWidth(235);
         logoBox.getStyleClass().add(CSS_LOGO_BOX);
-
-        final VBox playBox = createPlay();
 
         launchButton = new Button(I18N.get(TAG.LAUNCH).toUpperCase());
         launchButton.setDisable(true);
@@ -103,41 +87,14 @@ public class EmastersUIProvider implements UIProvider {
     }
 
     public void init(Stage stage) {
-
-    }
-
-
-    private VBox createPlay() {
-        final VBox playBox = new VBox();
-
-        downloadLabel = LabelFactory.boldLabel(TAG.UPDATING, CSS_LABEL_DOWNLOAD);
-        currentSizeLabel = LabelFactory.boldLabel();
-        sizeOfLabel = LabelFactory.amberLabel();
-        totalSizeLabel = LabelFactory.boldLabel();
-        speedLabel = LabelFactory.amberLabel();
-
-        progressBar = new ProgressBar();
-        progressBar.setPrefWidth(WIDTH - (PADDING_LR * 2));
-
-        final HBox emptyBox = new HBox();
-        HBox.setHgrow(emptyBox, Priority.ALWAYS);
-
-        final HBox estimateBox = new HBox();
-        estimateBox.getChildren().addAll(emptyBox, currentSizeLabel, sizeOfLabel, totalSizeLabel, speedLabel);
-
-        final StackPane progressPane = new StackPane();
-        progressPane.setAlignment(Pos.CENTER_LEFT);
-        progressPane.getChildren().addAll(progressBar, downloadLabel);
-
-        estimateTooltip = new PlayableTooltipBox();
-        playBox.getChildren().addAll(progressPane, estimateBox);
-
-        return playBox;
+        root = new Pane();
+        root.getStylesheets().add(EmastersUIProvider.class.getResource(STYLESHEET).toExternalForm());
+        root.getStyleClass().add(CSS_BG);
+        root.setPrefSize(WIDTH, HEIGHT);
     }
 
     public Parent createUpdater(FXManifest manifest) {
-        downloadLabel.setText(I18N.get(TAG.DOWNLOADING, ""));
-        sizeOfLabel.setText(I18N.get(TAG.OF));
+        playBox.changeToDownloading();
         launchButton.setVisible(false);
         notesBox.updateNotes(manifest.whatsNewPage);
         return root;
@@ -149,17 +106,13 @@ public class EmastersUIProvider implements UIProvider {
             launchButton.setDisable(false);
         }
 
-        currentSizeLabel.setText(df.format(currentMB) + " MB ");
-        totalSizeLabel.setText(" " + df.format(totalMB) + " MB");
-
-        downloadLabel.setText(I18N.get(TAG.DOWNLOADING, currentArchive));
-        progressBar.setProgress(progress);
-        estimateTooltip.setTime(null, progressBar, progress);
+        playBox.updateProgress(currentMB, totalMB, currentArchive, progress);
+        estimateTooltip.setTime(null, playBox.getBar(), progress);
 
         boolean needUpdate = rate.calculateDownloadSpeed(currentMB, totalMB, currentArchive);
         if (needUpdate) {
-            speedLabel.setText(" (" + df.format(rate.mbPerSecond) + "MB/s)");
-            estimateTooltip.setTime(rate.secondsToComplete, progressBar, progress);
+            playBox.updateSpeedRate(rate.mbPerSecond);
+            estimateTooltip.setTime(rate.secondsToComplete, playBox.getBar(), progress);
         }
     }
 }
