@@ -20,6 +20,8 @@ import java.util.concurrent.Callable;
  */
 public final class I18N {
 
+    private static final String BASE = "bundles.langBundleUpdate";
+
     /**
      * the current selected Locale.
      */
@@ -40,7 +42,7 @@ public final class I18N {
 
         for (Locale entry : Locale.getAvailableLocales()) {
             try {
-                ResourceBundle.getBundle("bundles.langBundle", entry);
+                ResourceBundle.getBundle(BASE, entry);
                 localeList.add(entry);
             } catch (MissingResourceException ex) {
                 // ...
@@ -84,7 +86,7 @@ public final class I18N {
      * @return localized formatted string
      */
     private static String get(final String key, final Object... args) {
-        ResourceBundle bundle = ResourceBundle.getBundle("bundles.langBundle", getLocale());
+        ResourceBundle bundle = ResourceBundle.getBundle(BASE, getLocale());
         return MessageFormat.format(bundle.getString(key), args);
     }
 
@@ -98,7 +100,7 @@ public final class I18N {
      * @return localized formatted string
      */
     public static String get(final TAG key, final Object... args) {
-        ResourceBundle bundle = ResourceBundle.getBundle("bundles.langBundle", getLocale());
+        ResourceBundle bundle = ResourceBundle.getBundle(BASE, getLocale());
         return MessageFormat.format(bundle.getString(key.name().toLowerCase()), args);
     }
 

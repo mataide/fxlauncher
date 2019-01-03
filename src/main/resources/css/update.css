@@ -3,7 +3,13 @@
 @import "components.css";
 
 .background {
-    -fx-background-color: -color-dark-primary;
+    -fx-background-color: #232323;
+}
+
+.right-image {
+    -fx-background-image: url('../img/bg_right.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
 }
 
 .logo-box {
@@ -13,26 +19,45 @@
 }
 
 .label-patch {
-    -fx-text-fill: -color-primary;
-    -fx-font-size: 16px;
+    -fx-padding: 0 0 0 20px;
+    -fx-text-fill: #4076bb;
+    -fx-font-size: 12px;
     -fx-font-family: 'Myriad Pro';
-    -fx-background-color: -color-dark-secondary;
-    -fx-padding: 5px 20px 5px 20px;
-    -fx-background-radius: 10px 10px 0 0;
-}
-
-.patch-notes-box {
-    -fx-background-color: -color-dark-blue;
-    -fx-background-radius: 10px 10px 0 0;
-    -fx-border-radius: 10px 10px 0 0;
-    -fx-border-color: -color-dark-secondary;
-    -fx-border-width: 0.5 0.5 0 0.5;
+    -fx-background-color: transparent;
 }
 
 .scroll-pane {
-    -fx-border-color: -color-dark-secondary;
-    -fx-border-radius: 0 0 10px 10px;
+    -fx-background-color: #183555;
+    -fx-background-radius: 5px;
     -fx-padding: 10px;
-    -fx-background-radius: 0 0 10px 10px;
-    -fx-border-width: 0 0.5 0.5 0.5;
+}
+
+.separator:horizontal .line {
+    -fx-border-color: #4076bb;
+    -fx-border-width: 1,5px;
+    -fx-border-radius: 2px 2px 0 0;
+}
+
+.label-bold {
+    -fx-font-size: 10px;
+}
+
+.label-download {
+    -fx-padding: 0 0 0 10px;
+}
+
+.label-bold-amber {
+    -fx-text-fill: -color-amber;
+}
+
+.region-arrow {
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-rotate: -180;
+    -fx-background-color: #39393a;
+}
+
+.region-tooltip {
+    -fx-background-color: #39393a;
+    -fx-background-radius: 10px;
+    -fx-padding: 4px 10px 4px 10px;
 }

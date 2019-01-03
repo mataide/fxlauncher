@@ -21,11 +21,11 @@
     -fx-cursor: hand;
     -fx-background-radius: 5em;
     -fx-background-color: -color-amber;
-    -fx-font-family: 'BigNoodleTooOblique';
-    -fx-font-size: 16px;
+    -fx-font-family: 'Myriad';
+    -fx-font-size: 12px;
     -fx-text-fill: -color-dark-secondary;
     -fx-padding: 0.5em 1em 0.5em 1em;
-    -fx-pref-width: 120px;
+    -fx-pref-width: 100px;
 }
 
 .button:hover {
@@ -54,7 +54,7 @@
 
 .progress-bar:determinate > .track, .progress-bar:indeterminate > .track {
     -fx-background-insets: 0 0 0 0;
-    -fx-background-color: -color-dark-secondary;
+    -fx-background-color: #39393a;
 }
 
 /*
