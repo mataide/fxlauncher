@@ -12,6 +12,14 @@
     <description>Auto updating launcher for JavaFX Applications</description>
     <url>https://github.com/edvin/fxlauncher</url>
 
+    <repositories>
+        <repository>
+            <id>ejb-repo</id>
+            <name>Install4j Repository</name>
+            <url>	https://maven.ej-technologies.com/repository/</url>
+        </repository>
+    </repositories>
+
     <distributionManagement>
         <repository>
             <id>sonatype-nexus-staging</id>
@@ -59,6 +67,11 @@
                         <useReleaseProfile>false</useReleaseProfile>
                         <arguments>-Psonatype-oss-release</arguments>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonatype.install4j</groupId>
+                    <artifactId>install4j-maven-plugin</artifactId>
+                    <version>1.1.1</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -126,8 +139,22 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.sonatype.install4j</groupId>
+                <artifactId>install4j-maven-plugin</artifactId>
+                <version>1.1.1</version>
+            </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.install4j</groupId>
+            <artifactId>install4j-runtime</artifactId>
+            <version>7.0.8</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

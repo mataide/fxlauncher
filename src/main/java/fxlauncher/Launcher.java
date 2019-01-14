@@ -3,6 +3,7 @@ package fxlauncher;
 import com.sun.javafx.application.ParametersImpl;
 import com.sun.javafx.application.PlatformImpl;
 import fxlauncher.emasters.EmastersUIProvider;
+import fxlauncher.emasters.EmastersUpdate;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -210,8 +211,8 @@ public class Launcher extends Application {
     }
 
     public static void main(String[] args) {
-        System.out.println(args[0]);
-        launch(args);
+        EmastersUpdate update = new EmastersUpdate();
+        update.checkUpdate(() -> launch(args));
     }
 
     private void createUpdateWrapper() {
